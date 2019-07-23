@@ -10,9 +10,6 @@ import java.util.*
  */
 interface PostApi {
 
-    @GET("/posts")
+    @GET(Endpoints.POSTS)
     fun getPosts():Observable<List<Post>>
-
-
-
 }

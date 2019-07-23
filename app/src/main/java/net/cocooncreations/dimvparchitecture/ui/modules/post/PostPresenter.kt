@@ -1,8 +1,11 @@
 package net.cocooncreations.dimvparchitecture.ui.modules.post
 
+import android.app.Application
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import net.cocooncreations.ApplicationClass
+import net.cocooncreations.dimvparchitecture.di.components.ApplicationComponent
 import net.cocooncreations.dimvparchitecture.network.PostApi
 import net.cocooncreations.dimvparchitecture.ui.base.BasePresenter
 import javax.inject.Inject
@@ -14,16 +17,16 @@ import javax.inject.Inject
  * @property context the context in which the application is running
  * @property subscription the subscription to the API call
  */
-class PostPresenter(postView:PostView):BasePresenter<PostView>(postView) {
+class PostPresenter(postView:PostView, var applicationComponent: Application):BasePresenter<PostView>(postView) {
 
     @Inject
     lateinit var postApi: PostApi
 
     private var subscription:Disposable? =  null
 
-
     override fun onViewCreated() {
-        getPosts()
+        (applicationComponent as ApplicationClass).applicationComponent.inject(this)
+         getPosts()
     }
 
     /**

@@ -15,7 +15,7 @@ class PostActivity : BaseActivity<PostPresenter>(),PostView {
     }
 
     override fun instantiatePresenter(): PostPresenter {
-        return PostPresenter(this)
+        return PostPresenter(this,application)
     }
 
     override fun updatePosts(posts: List<Post>) {

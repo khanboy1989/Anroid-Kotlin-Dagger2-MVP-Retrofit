@@ -20,7 +20,7 @@ import org.robolectric.annotation.Config
  * */
 
 @RunWith(RobolectricTestRunner::class)
-@Config(application = ApplicationClass::class)
+@Config(application = ApplicationClass::class, manifest = Config.NONE)
 
 class PostPresenterTest {
 
@@ -35,7 +35,7 @@ class PostPresenterTest {
      */
     @Before
     fun setup(){
-        var application:ApplicationClass = ApplicationClass()
+        val application:ApplicationClass = ApplicationClass()
         presenter = PostPresenter(view,application)
         view.reset()
     }
@@ -103,8 +103,5 @@ class PostPresenterTest {
         override fun getContext(): Context {
             return getTestContext()
         }
-
     }
-
-
 }

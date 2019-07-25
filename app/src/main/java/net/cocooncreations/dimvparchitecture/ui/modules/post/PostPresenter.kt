@@ -21,7 +21,6 @@ class PostPresenter(postView:PostView, var applicationComponent: Application):Ba
 
     @Inject
     lateinit var postApi: PostApi
-
     private var subscription:Disposable? =  null
 
     override fun onViewCreated() {
@@ -33,7 +32,6 @@ class PostPresenter(postView:PostView, var applicationComponent: Application):Ba
      * Loads the posts from the API and presents them in the view when retrieved, or showss error if
      * any.
      */
-
     fun getPosts(){
         view.showLoading()
         subscription = postApi.getPosts().observeOn(AndroidSchedulers.mainThread())
@@ -47,6 +45,9 @@ class PostPresenter(postView:PostView, var applicationComponent: Application):Ba
             })
     }
 
+    /**
+     *Triggered by the view to cancel and dispose the threads that are running when view is destroyed
+     */
 
     override fun onViewDestroyed() {
         subscription?.dispose()

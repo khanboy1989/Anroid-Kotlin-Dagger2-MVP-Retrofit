@@ -11,7 +11,11 @@ open class ApplicationClass:Application() {
 
     override fun onCreate() {
         super.onCreate()
+        initAppComponent()
+    }
 
+
+    private fun initAppComponent(){
         applicationComponent = DaggerApplicationComponent.builder()
             .netModule(NetModule())
             .build()

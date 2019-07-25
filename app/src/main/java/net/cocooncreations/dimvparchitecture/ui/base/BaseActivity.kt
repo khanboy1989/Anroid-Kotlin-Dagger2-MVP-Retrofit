@@ -1,6 +1,7 @@
 package net.cocooncreations.dimvparchitecture.ui.base
 
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
@@ -19,8 +20,9 @@ abstract class BaseActivity<P:BasePresenter<BaseView>>:BaseView,AppCompatActivit
     * view
     */
 
-    protected var mProgressDialog:android.support.v7.app.AlertDialog? = null
+    private var mProgressDialog:android.support.v7.app.AlertDialog? = null
 
+    private var alertDialog:android.support.v7.app.AlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,4 +61,23 @@ abstract class BaseActivity<P:BasePresenter<BaseView>>:BaseView,AppCompatActivit
         hideProgressDialog()
         mProgressDialog == null
     }
+
+
+    protected fun showAlertDialog(title:String,message:String, dialogInterface: DialogInterface.OnClickListener?){
+        hideAlertDialog()
+        alertDialog = AlertDialog.Builder(this)
+            .setTitle(title)
+            .setMessage(message)
+            .setPositiveButton(R.string.ok,dialogInterface)
+            .setCancelable(false)
+            .create()
+        alertDialog?.show()
+    }
+
+    protected fun hideAlertDialog(){
+        if(alertDialog!=null){
+            alertDialog?.dismiss()
+        }
+    }
+
 }

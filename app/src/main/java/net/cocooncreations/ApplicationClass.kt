@@ -15,7 +15,6 @@ open class ApplicationClass:Application() {
         applicationComponent = DaggerApplicationComponent.builder()
             .netModule(NetModule())
             .build()
-
         applicationComponent.inject(this)
     }
 }

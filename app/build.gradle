@@ -76,6 +76,7 @@ dependencies {
     testImplementation "org.robolectric:robolectric:4.3"
 
 
+    testImplementation "android.arch.core:core-testing:1.1.1"
 
 
 

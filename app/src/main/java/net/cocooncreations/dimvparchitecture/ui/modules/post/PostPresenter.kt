@@ -34,8 +34,9 @@ class PostPresenter(postView:PostView, var applicationComponent: Application):Ba
      */
     fun getPosts(){
         view.showLoading()
-        subscription = postApi.getPosts().observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
+        subscription = postApi.getPosts().
+            observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.newThread())
             .doOnTerminate {
                 view.hideLoading()
             }.subscribe({
